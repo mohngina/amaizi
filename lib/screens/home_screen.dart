@@ -1,4 +1,6 @@
 import 'package:amaizi/bloc/home_bloc.dart';
+import 'package:amaizi/models/user.dart';
+import 'package:amaizi/tools/bloc_provider.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -28,21 +30,31 @@ class HomeScreen extends StatelessWidget {
         //   color: Colors.black,
         // ),
       ),
-      body: Container(
-        height: double.infinity,
-        width: double.infinity,
-        child: ListView.builder(
-          shrinkWrap: true,
-          padding: EdgeInsets.only(top: 100),
-          itemBuilder: (BuildContext context, index) {
+      body: BlocProvider(
+        bloc: bloc,
+        child: StreamBuilder<Object>(
+          stream: bloc.stream,
+          builder: (context, snapshot) {
             return Container(
-              child: Column(
-                children: [
-                  Text(''),
-                ],
+              height: double.infinity,
+              width: double.infinity,
+              child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: 5,
+                padding: EdgeInsets.only(top: 100),
+                itemBuilder: (BuildContext context, index) {
+                  User user = bloc.users[index];
+                  return Container(
+                    child: Column(
+                      children: [
+                        Text('Name: ${user?.name ?? ''}'),
+                      ],
+                    ),
+                  );
+                },
               ),
             );
-          },
+          }
         ),
       ),
     );
