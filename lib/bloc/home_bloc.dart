@@ -20,9 +20,13 @@ class HomeBloc extends Bloc {
 
   }
 
+  refresh(){
+    callUsers();
+  }
+
   @override
   void initState() async {
     super.initState();
-    await callUsers();
+    callUsers();
   }
 }

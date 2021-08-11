@@ -16,7 +16,7 @@ class HomeScreen extends StatelessWidget {
           icon: Icon(Icons.refresh,color: Colors.white,),
           onPressed: (){
            //Refresh
-
+            bloc.refresh();
           },
         ),
         title: Text(
@@ -24,11 +24,6 @@ class HomeScreen extends StatelessWidget {
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
         backgroundColor: Colors.red,
-        // leading: IconButton(
-        //   icon: Icon(Icons.menu),
-        //   onPressed: () {},
-        //   color: Colors.black,
-        // ),
       ),
       body: BlocProvider(
         bloc: bloc,
