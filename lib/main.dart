@@ -18,7 +18,7 @@ class SafeDrink extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       debugShowCheckedModeBanner: false,
-      initialRoute: 'splash',
+      initialRoute: 'home',
       routes: {
         'splash': (context) => SplashScreen(),
         'home': (context) => HomeScreen(),

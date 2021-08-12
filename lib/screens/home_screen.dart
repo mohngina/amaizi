@@ -2,6 +2,7 @@ import 'package:amaizi/bloc/home_bloc.dart';
 import 'package:amaizi/models/user.dart';
 import 'package:amaizi/tools/bloc_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class HomeScreen extends StatelessWidget {
   final HomeBloc bloc = HomeBloc();
@@ -33,16 +34,27 @@ class HomeScreen extends StatelessWidget {
             return Container(
               height: double.infinity,
               width: double.infinity,
-              child: ListView.builder(
+              child:
+                  bloc.loading ?
+              Center(
+                child: SpinKitFadingCircle(
+                  color: Colors.red,
+                  size: 100.0,
+                ),
+              ):
+              ListView.builder(
                 shrinkWrap: true,
-                itemCount: 5,
+                itemCount: bloc.users.length,
                 padding: EdgeInsets.only(top: 100),
                 itemBuilder: (BuildContext context, index) {
                   User user = bloc.users[index];
                   return Container(
                     child: Column(
                       children: [
-                        Text('Name: ${user?.name ?? ''}'),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text('Name: ${user?.name ?? ''}'),
+                        ),
                       ],
                     ),
                   );
